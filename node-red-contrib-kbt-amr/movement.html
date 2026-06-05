@@ -1,0 +1,67 @@
+<script type="text/javascript">
+    RED.nodes.registerType('movement', {
+        category: 'AMR Control',
+        color: '#C7E9C0',
+        defaults: {
+            name: { value: "" },
+            robot_ip: { value: "192.168.192.5", required: true },
+            destination: { value: "LM2", required: true },
+            timeout: { value: 60, required: true, validate: RED.validators.number() }
+        },
+        inputs: 1,
+        outputs: 4,
+        outputLabels: [
+            "Success",
+    	    "Cancelled",
+            "Can't move to target",
+            "Timeout"
+        ],
+        icon: "font-awesome/fa-location-arrow",
+        label: function () {
+            return this.name || "Movement";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="movement">
+    <div class="form-row">
+        <label for="node-input-name">
+            <i class="fa fa-tag"></i> Name
+        </label>
+        <input type="text" id="node-input-name" placeholder="Movement">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-robot_ip">
+            <i class="fa fa-wifi"></i> Robot IP
+        </label>
+        <input type="text" id="node-input-robot_ip" placeholder="192.168.192.5">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-destination">
+            <i class="fa fa-map-marker"></i> Destination
+        </label>
+        <input type="text" id="node-input-destination" placeholder="LM2">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-timeout">
+            <i class="fa fa-clock-o"></i> Timeout
+        </label>
+        <input type="number" id="node-input-timeout" placeholder="60">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="movement">
+    <p>AMR Movement node.</p>
+    <p>Send robot to destination such as LM2.</p>
+
+    <h3>Outputs</h3>
+    <ol>
+        <li>Success</li>
+        <li>Can't move to target</li>
+        <li>Cancelled</li>
+        <li>Timeout</li>
+    </ol>
+</script>

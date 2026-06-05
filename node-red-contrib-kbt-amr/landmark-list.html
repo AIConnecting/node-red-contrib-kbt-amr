@@ -1,0 +1,40 @@
+<script type="text/javascript">
+RED.nodes.registerType('landmark-list', {
+    category: 'AMR Status',
+    color: '#BBDEFB',
+    defaults: {
+        name: { value: "" },
+        robot_ip: { value: "192.168.192.5", required: true },
+        timeout: { value: 5, required: true }
+    },
+    inputs: 1,
+    outputs: 2,
+    outputLabels: [
+        "Data",
+        "Error"
+    ],
+    icon: "font-awesome/fa-list",
+    label: function () {
+        return this.name || "Landmark List";
+    }
+});
+</script>
+
+<script type="text/html" data-template-name="landmark-list">
+
+<div class="form-row">
+<label for="node-input-name">Name</label>
+<input type="text" id="node-input-name">
+</div>
+
+<div class="form-row">
+<label for="node-input-robot_ip">Robot IP</label>
+<input type="text" id="node-input-robot_ip">
+</div>
+
+<div class="form-row">
+<label for="node-input-timeout">Timeout</label>
+<input type="number" id="node-input-timeout">
+</div>
+
+</script>
