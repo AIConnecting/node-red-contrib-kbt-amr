@@ -1,0 +1,84 @@
+<script type="text/javascript">
+RED.nodes.registerType('volume', {
+    category: 'AMR Sound',
+    color: '#D1C4E9',
+    defaults: {
+        name: { value: "" },
+        robot_ip: { value: "192.168.192.5", required: true },
+        command: { value: "set", required: true },
+        volume: { value: 50, required: true, validate: RED.validators.number() },
+        step: { value: 10, required: true, validate: RED.validators.number() },
+        timeout: { value: 5, required: true, validate: RED.validators.number() }
+    },
+    inputs: 1,
+    outputs: 2,
+    outputLabels: ["Success", "Error"],
+    icon: "font-awesome/fa-volume-up",
+    label: function () {
+        return this.name || "Volume";
+    },
+    oneditprepare: function () {
+        function updateFields() {
+            var cmd = $("#node-input-command").val();
+
+            if (cmd === "set") {
+                $("#volume-row").show();
+                $("#step-row").hide();
+            } else {
+                $("#volume-row").hide();
+                $("#step-row").show();
+            }
+        }
+
+        $("#node-input-command").on("change", updateFields);
+        updateFields();
+    }
+});
+</script>
+
+<script type="text/html" data-template-name="volume">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Volume">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-robot_ip"><i class="fa fa-wifi"></i> Robot IP</label>
+        <input type="text" id="node-input-robot_ip" placeholder="192.168.192.5">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-command"><i class="fa fa-music"></i> Command</label>
+        <select id="node-input-command">
+            <option value="set">Set Volume</option>
+            <option value="up">Volume Up</option>
+            <option value="down">Volume Down</option>
+        </select>
+    </div>
+
+    <div class="form-row" id="volume-row">
+        <label for="node-input-volume"><i class="fa fa-volume-up"></i> Volume</label>
+        <input type="number" id="node-input-volume" min="0" max="100" placeholder="50">
+    </div>
+
+    <div class="form-row" id="step-row">
+        <label for="node-input-step"><i class="fa fa-plus"></i> Step</label>
+        <input type="number" id="node-input-step" min="1" max="100" placeholder="10">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-timeout"><i class="fa fa-clock-o"></i> Timeout</label>
+        <input type="number" id="node-input-timeout" placeholder="5">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="volume">
+    <p>Set or adjust AMR volume.</p>
+
+    <h3>Commands</h3>
+    <ul>
+        <li>Set Volume: set fixed volume 0-100</li>
+        <li>Volume Up: increase volume by step</li>
+        <li>Volume Down: decrease volume by step</li>
+    </ul>
+</script>

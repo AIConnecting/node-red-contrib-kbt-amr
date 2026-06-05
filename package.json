@@ -1,0 +1,32 @@
+{
+  "name": "node-red-contrib-kbt-amr",
+  "version": "1.0.0",
+  "description": "KBT AMR custom nodes for Node-RED",
+  "main": "movement.js",
+  "scripts": {},
+  "keywords": [
+    "node-red",
+    "kbt",
+    "amr",
+    "robot"
+  ],
+  "author": "KBT",
+  "license": "ISC",
+  "type": "commonjs",
+  "node-red": {
+    "nodes": {
+      "movement": "movement.js",
+      "cancel-move": "cancel-move.js",
+            "pause-move": "pause-move.js",
+      "resume-move": "resume-move.js",
+            "reset-alarm": "reset-alarm.js",
+      "robot-speed": "robot-speed.js",
+      "current-poi": "current-poi.js",
+      "move-state": "move-state.js",
+      "battery": "battery.js",
+      "alarm": "alarm.js",
+      "landmark-list": "landmark-list.js",
+      "volume": "volume.js"
+    }
+  }
+}
